@@ -28,6 +28,32 @@ func twoSumMyAlgo(nums []int, target int) []int {
 	return []int{}
 }
 
+// Iteration 1: how can we make it faster?
+// Let's try hashin
 func twoSumIteration1(nums []int, target int) []int {
+	hash := make(map[int]int)
+	for i, v := range nums {
+		hash[v] = i
+	}
+	for j, k := range nums {
+		if i, ok := hash[target-k]; ok {
+			if i != j {
+				return []int{j, i}
+			}
+		}
+	}
+	return []int{}
+}
+
+// Iteration 2: improvement on the algorithm, no need for two loops.
+
+func twoSumIteration2(nums []int, target int) []int {
+	hash := make(map[int]int)
+	for i, v := range nums {
+		if j, ok := hash[v]; ok {
+			return []int{j, i}
+		}
+		hash[target-v] = i
+	}
 	return []int{}
 }
