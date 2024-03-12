@@ -71,18 +71,6 @@ func reverseListIteration1(head *ListNode) *ListNode {
 
 // Iteration 2: recursive solution
 
-func flip(head *ListNode, out *ListNode) *ListNode {
-	if head.Next == nil {
-		temp := &ListNode{Val: head.Val, Next: nil}
-		out = temp
-		return out
-	} else {
-		temp := &ListNode{Val: head.Val, Next: out}
-		out = temp
-		return flip(head.Next, out)
-	}
-}
-
 func reverseListIteration2(head *ListNode) *ListNode {
 	if head == nil {
 		return nil
