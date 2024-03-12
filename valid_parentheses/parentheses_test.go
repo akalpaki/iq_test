@@ -66,3 +66,10 @@ func TestIsValidMyAlgo(t *testing.T) {
 		}
 	}
 }
+
+func BenchmarkIsValidMyAlgo(b *testing.B) {
+	bench := "{({{[[]]}})}"
+	for i := 0; i < b.N; i++ {
+		isValidMyAlgo(bench)
+	}
+}

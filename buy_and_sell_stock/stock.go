@@ -66,10 +66,11 @@ func findProfitIteration2(prices []int) int {
 	min, profit := prices[0], 0 // avoid 1 iteration by assigning first element as min right away
 	pricesLen := len(prices)
 	for i := 1; i < pricesLen; i++ {
+		diff := prices[i] - min
 		if prices[i] < min {
 			min = prices[i]
-		} else if (prices[i] - min) > profit {
-			profit = prices[i] - min
+		} else if diff > profit {
+			profit = diff
 		}
 	}
 	return profit
