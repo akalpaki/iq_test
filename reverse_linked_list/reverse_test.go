@@ -165,3 +165,10 @@ func BenchmarkReverseListIteration2(b *testing.B) {
 		reverseListIteration2(bench)
 	}
 }
+
+func BenchmarkReverseListIteration3(b *testing.B) {
+	bench := ListNode{Val: 1, Next: &ListNode{Val: 2, Next: &ListNode{Val: 3, Next: &ListNode{Val: 4, Next: &ListNode{Val: 5, Next: nil}}}}}
+	for i := 0; i < b.N; i++ {
+		reverseListIteration3(bench)
+	}
+}

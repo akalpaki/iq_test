@@ -85,14 +85,33 @@ func reverseListIteration2(head *ListNode) *ListNode {
 	var flip func(h *ListNode) *ListNode
 	flip = func(h *ListNode) *ListNode {
 		if h.Next == nil {
-			temp := &ListNode{Val: h.Val, Next: out}
-			out = temp
-			return out
-		} else {
-			temp := &ListNode{Val: h.Val, Next: out}
-			out = temp
-			return flip(h.Next)
+			return &ListNode{Val: h.Val, Next: out}
 		}
+		temp := &ListNode{Val: h.Val, Next: out}
+		out = temp
+		return flip(h.Next)
 	}
 	return flip(current)
+}
+
+// test to remove pointer semantics from function
+// small perf improvement
+func reverseListIteration3(head ListNode) ListNode {
+	values := []int{}
+	current := head
+	for current.Next != nil {
+		values = append(values, current.Val)
+		current = *current.Next
+	}
+	values = append(values, current.Val) // get the last value from the list
+
+	out := ListNode{Val: values[len(values)-1]}
+	current = out
+	for i := len(values) - 2; i >= 0; i-- {
+		temp := &ListNode{Val: values[i]}
+		current.Next = temp
+		current = *current.Next
+	}
+
+	return out
 }
